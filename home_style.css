@@ -1,0 +1,188 @@
+/* css default resetter */
+html {
+  font-size: 14px;
+  margin: 0;
+  background-color: #24292e;
+  background-image: url("https://image-bucket.nyc3.cdn.digitaloceanspaces.com/img/bg_full_final.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  font-family: Verdana, Helvetica, sans-serif;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  font-weight: normal;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+ol, ul {
+  list-style: none;
+  background-color: #dddddd;
+}
+
+/* Element position and sizing using class */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(30, 1fr);
+  grid-gap: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("https://image-bucket.nyc3.cdn.digitaloceanspaces.com/img/bg_full_white_trans_final.png");
+  background-size: cover;
+  z-index: -2;
+}
+
+.grid-item {
+  grid-column: 1 / span 12;
+  grid-row: 1 / span 10;
+  height: 100%;
+  width: 100%;
+}
+
+.canvas {
+  grid-column: 2 / span 10;
+  grid-row: 2 / span 6;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-powerbutton {
+  grid-column: 11;
+  grid-row: 8;
+  width: 50%;
+  height: 40%;
+  margin: 30% 0 0 35%;  
+}
+
+.grid-leftbutton {
+  grid-column: 2;
+  grid-row: 8;
+  width: 42%;
+  height: 42%;
+  margin: 30% 0 0 35%;  
+}
+
+.grid-rightbutton {
+  grid-column: 3;
+  grid-row: 8;
+  width: 42%;
+  height: 42%;
+  margin: 30% 0 0 0%; 
+}
+
+.nav-projects {
+  grid-column: 12;
+  grid-row: 2;
+  border-radius: 25%;
+  width: 40%;
+  height: 40%;
+  margin: 18% 0 0 6%;
+}
+
+.nav-projects-img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-links {
+  grid-column: 12;
+  grid-row: 2;
+  border-radius: 25%;
+  width: 40%;
+  height: 40%;
+  margin: 60% 0 0 8%;
+}
+
+.nav-links-img {
+  width: 92%;
+  height: 100%;
+}
+
+.nav-about {
+  grid-column: 12;
+  grid-row: 3;
+  border-radius: 25%;
+  width: 40%;
+  height: 40%;
+  margin: 0 0 0 8%;
+}
+
+.socials-twitter {
+  grid-column: 1;
+  grid-row: 2;
+  width: 30%;
+  height: 30%;
+  margin: 5% 0 0 60%;
+  border-radius: 25%;
+}
+
+.socials-linkedin {
+  grid-column: 1;
+  grid-row: 2;
+  width: 30%;
+  height: 30%;
+  border-radius: 25%;
+  margin: 45% 0 0 60%;
+}
+
+.powerbutton-img {
+  width: 100%;
+  height: 100%;
+}
+
+.leftbutton-img {
+  width: 100%;
+  height: 100%;
+}
+
+.rightbutton-img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-about-img {
+  width: 92%;
+  height: 100%;
+}
+.socials-twitter-img {
+  width: 100%;
+  height: 100%;
+}
+
+.socials-linkedin-img {
+  width: 100%;
+  height: 100%;
+}
+
+/*Button Animations */
+.powerbutton-img:active {
+  transform: translateY(2px);
+}
+
+.leftbutton-img:active {
+  transform: translateY(2px);
+}
+
+.rightbutton-img:active {
+  transform: translateY(2px);
+}
+
+/* Element style: cursor, coloring, and borders using id */
+#canvas {
+  border: 5px solid rgb(34, 34, 34);
+}
+
+#nav-projects:hover, #nav-resources:hover, #nav-about:hover, #powerButton:hover, #leftButton:hover, #rightButton:hover  {
+  cursor: pointer;
+}
