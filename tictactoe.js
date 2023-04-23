@@ -1,7 +1,8 @@
 import {
-  drawScoreBoard,
+  handleZoneClick,
+  drawScoreBoardText,
+  drawScoreBoardShapes,
   drawTitle,
-  getMousePos,
   drawBoard,
   resetCanvas,
   drawCircleState,
@@ -10,44 +11,61 @@ import {
   canvas,
 } from "./objects.js";
 resetCanvas();
+
+let XWins = 0;
+let OWins = 0;
+let zonesPlayed = [];
 //circles array for O player moves
-export const selectedO = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
+export let selectedO = [];
 //circles array for O player moves
-export const selectedX = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-];
+export let selectedX = [];
 
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("Player" + " X" + "'s " + "Turn", 610, 130);
+function handleTurn() {
+  if (zonesPlayed.length === 0) {
+    if (typeof clickedZone === "number") {
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 48px sans-serif";
+      ctx.fillText("Player X's Turn", 610, 130);
+      zonesPlayed.push(handleZoneClick() - 1);
+      selectedX.push(handleZoneClick() - 1);
+    } else {
+      console.log("Invalid zone clicked");
+    }
+  } else {
+    console.log("Zone already played");
+  }
+  console.log(zonesPlayed);
+  console.log(selectedX);
+}
 
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("X Wins: ", 610, 210);
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("Y Wins: ", 610, 280);
+function checkOWinCondition() {}
+//0,1,2
+//3,4,5
+//6,7,8
+//1,4,7
+//2,5,8
+//3,6,9
+//1,5,9
+//3,5,7
 
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("New Game", 660, 370);
+function checkXWinCondition() {}
+//0,1,2
+//3,4,5
+//6,7,8
+//1,4,7
+//2,5,8
+//3,6,9
+//1,5,9
+//3,5,7
 
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("Reset Board", 650, 455);
+function checkIllegalMove() {}
 
-ctx.fillStyle = "#FFFFFF";
-ctx.font = "bold 48px sans-serif";
-ctx.fillText("Reset Score", 655, 540);
-
+drawScoreBoardText();
+drawScoreBoardShapes();
 drawBoard();
+drawTitle();
 drawCircleState();
 drawXState();
-drawTitle();
-drawScoreBoard();
-
+canvas.addEventListener("click", handleTurn);
 const powerButton = document.getElementById("powerButton");
 powerButton.addEventListener("click", resetCanvas);
-
-canvas.addEventListener("click", getMousePos(event));

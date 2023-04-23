@@ -1,5 +1,7 @@
 export {
-  drawScoreBoard,
+  handleZoneClick,
+  drawScoreBoardText,
+  drawScoreBoardShapes,
   drawTitle,
   getMousePos,
   drawBoard,
@@ -10,6 +12,7 @@ export {
   canvas,
 };
 import { selectedO, selectedX } from "./tictactoe.js";
+
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 canvas.style.border = "5px solid orange";
@@ -183,7 +186,7 @@ function getMousePos() {
   });
 }
 
-function drawScoreBoard() {
+function drawScoreBoardShapes() {
   ctx.strokeStyle = "#FFFFFF";
   ctx.lineWidth = 5;
   //Turn Box
@@ -197,3 +200,76 @@ function drawScoreBoard() {
   //Clear Score
   ctx.strokeRect(600, 485, 375, 75);
 }
+
+function drawScoreBoardText() {
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 48px sans-serif";
+  ctx.fillText("X Wins: ", 610, 210);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 48px sans-serif";
+  ctx.fillText("Y Wins: ", 610, 280);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 48px sans-serif";
+  ctx.fillText("New Game", 660, 370);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 48px sans-serif";
+  ctx.fillText("Reset Board", 650, 455);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "bold 48px sans-serif";
+  ctx.fillText("Reset Score", 655, 540);
+}
+
+function handleZoneClick() {
+  canvas.addEventListener("click", function (event) {
+    let x = event.offsetX;
+    let y = event.offsetY;
+    let zoneNumber = 0;
+    for (let i = 0; i < zones.length; i++) {
+      if (
+        x > zones[i].startX &&
+        x < zones[i].endX &&
+        y > zones[i].startY &&
+        y < zones[i].endY
+      ) {
+        zoneNumber = i + 1;
+      }
+    }
+    return zoneNumber;
+  });
+}
+
+class DefineZones {
+  constructor(startX, startY, endX, endY) {
+    this.startX = startX;
+    this.startY = startY;
+    this.endX = endX;
+    this.endY = endY;
+  }
+}
+
+const zones = [
+  // zone 1
+  new DefineZones(0, 0, 200, 200),
+  // zone 2
+  new DefineZones(200, 0, 400, 200),
+  // zone 3
+  new DefineZones(400, 0, 600, 200),
+  // zone 4
+  new DefineZones(0, 200, 200, 400),
+  // zone 5
+  new DefineZones(200, 200, 400, 400),
+  // zone 6
+  new DefineZones(400, 200, 600, 400),
+  // zone 7
+  new DefineZones(0, 400, 200, 600),
+  // zone 8
+  new DefineZones(200, 400, 400, 600),
+  // zone 9
+  new DefineZones(400, 400, 600, 600),
+  // New Game
+  new DefineZones(600, 315, 975, 390),
+  // Reset Board
+  new DefineZones(600, 400, 975, 475),
+  // Reset Score
+  new DefineZones(600, 485, 975, 560),
+];
